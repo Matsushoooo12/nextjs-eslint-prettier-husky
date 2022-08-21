@@ -1,0 +1,43 @@
+{
+  "window.zoomLevel": 1,
+  "liveSassCompile.settings.autoprefix": [],
+  "liveSassCompile.settings.includeItems": ["**/scss/*.scss"],
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "~/../css"
+    },
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "~/../css"
+    }
+  ],
+  "workbench.statusBar.visible": true,
+  "editor.minimap.enabled": true,
+  "workbench.activityBar.visible": true,
+  "workbench.sideBar.location": "left",
+  "[scss]": {
+    "editor.suggest.insertMode": "replace"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.panel.defaultLocation": "right",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb",
+    "*.mp4": "default"
+  },
+  "editor.formatOnSave": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.prettierPath": "node_modules/prettier",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "git.autofetch": true,
+  "eslint.execArgv": null
+}
