@@ -1,34 +1,279 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS + Eslint + Prettier + husky
 
-## Getting Started
+## eslint --init
 
-First, run the development server:
+```
+$ npx eslint --init
 
-```bash
-npm run dev
-# or
-yarn dev
+You can also run this command directly using 'npm init @eslint/config'.
+? How would you like to use ESLint? …
+  To check syntax only
+  To check syntax and find problems
+❯ To check syntax, find problems, and enforce code style
+
+? What type of modules does your project use? …
+❯ JavaScript modules (import/export)
+  CommonJS (require/exports)
+  None of these
+
+? Which framework does your project use? …
+❯ React
+  Vue.js
+  None of these
+
+? Does your project use TypeScript? › No / Yes
+
+? Where does your code run? · browser
+
+? How would you like to define a style for your project? …
+❯ Use a popular style guide
+  Answer questions about your style
+
+? Which style guide do you want to follow? …
+❯ Standard: https://github.com/standard/eslint-config-standard-with-typescript
+  XO: https://github.com/xojs/eslint-config-xo-typescript
+
+? What format do you want your config file to be in? · JavaScript
+
+? Would you like to install them now? › No / Yes
+
+? Which package manager do you want to use? …
+  npm
+❯ yarn
+  pnpm
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 最終的に
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+✔ How would you like to use ESLint? · style
+✔ What type of modules does your project use? · esm
+✔ Which framework does your project use? · react
+✔ Does your project use TypeScript? · No / Yes
+✔ Where does your code run? · browser
+✔ How would you like to define a style for your project? · guide
+✔ Which style guide do you want to follow? · standard-with-typescript
+✔ What format do you want your config file to be in? · JavaScript
+Checking peerDependencies of eslint-config-standard-with-typescript@latest
+The config that you've selected requires the following dependencies:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+eslint-plugin-react@latest eslint-config-standard-with-typescript@latest @typescript-eslint/eslint-plugin@^5.0.0 eslint@^8.0.1 eslint-plugin-import@^2.25.2 eslint-plugin-n@^15.0.0 eslint-plugin-promise@^6.0.0 typescript@*
+✔ Would you like to install them now? · No / Yes
+✔ Which package manager do you want to use? · yarn
+Installing eslint-plugin-react@latest, eslint-config-standard-with-typescript@latest, @typescript-eslint/eslint-plugin@^5.0.0, eslint@^8.0.1, eslint-plugin-import@^2.25.2, eslint-plugin-n@^15.0.0, eslint-plugin-promise@^6.0.0, typescript@*
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## .eslintingnore
 
-## Learn More
+```
+$ touch .eslintignore
+```
 
-To learn more about Next.js, take a look at the following resources:
+.eslintignore
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+.next
+next-env.d.ts
+node_modules
+yarn.lock
+package-lock.json
+public
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## prettier パッケージインストール
 
-## Deploy on Vercel
+```
+$ yarn add -D prettier eslint-config-prettier
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## .prettierrc
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+$ touch .prettierrc
+```
+
+.prettierrc
+
+```
+{
+  "endOfLine": "lf",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "semi": true
+}
+```
+
+## .prettieringnore
+
+```
+$ touch .prettierignore
+```
+
+.prettierignore
+
+```
+.next
+next-env.d.ts
+node_modules
+yarn.lock
+package-lock.json
+public
+```
+
+## .vscode
+
+```
+$ mkdir .vscode
+$ cd .vscode
+$ touch setting.json
+```
+
+setting.json
+
+```
+{
+  "window.zoomLevel": 1,
+  "liveSassCompile.settings.autoprefix": [],
+  "liveSassCompile.settings.includeItems": ["**/scss/*.scss"],
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "~/../css"
+    },
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "~/../css"
+    }
+  ],
+  "workbench.statusBar.visible": true,
+  "editor.minimap.enabled": true,
+  "workbench.activityBar.visible": true,
+  "workbench.sideBar.location": "left",
+  "[scss]": {
+    "editor.suggest.insertMode": "replace"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.panel.defaultLocation": "right",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb",
+    "*.mp4": "default"
+  },
+  "editor.formatOnSave": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.prettierPath": "node_modules/prettier",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "git.autofetch": true,
+  "eslint.execArgv": null
+}
+```
+
+## .eslintrc.js
+
+```
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: ["plugin:react/recommended", "standard-with-typescript", "prettier"],
+  overrides: [],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+  },
+  plugins: ["react"],
+  rules: {
+    "react/react-in-jsx-scope": "off",
+  },
+  settings: {
+    react: {
+      version: "18.2.0",
+    },
+  },
+};
+```
+
+## husky
+
+```
+$ npx husky-init
+```
+
+.husky/pre-commit
+
+```
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# bash echo color
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+BLUE='\033[1;36m'
+BOLD='\033[1;37m'
+NC='\033[0m'
+
+echo "\n 🚧🏗️  ${BOLD}Checking format, lint and types in your project before committing${NC}"
+
+# Check Prettier standards
+npm run check-format ||
+(
+    echo "\n ❌🟨 Prettier Check ${RED}Failed${NC}. 🟨❌\n Run ${BLUE}npm run format${NC}, add changes and try commit again.\n";
+    false;
+)
+
+# Check ESLint Standards
+npm run check-lint ||
+(
+    echo "\n ❌🟪 ESLint Check ${RED}Failed${NC}. 🟪❌\n Make the required changes listed above, add changes and try to commit again.\n"
+    false;
+)
+
+# Check tsconfig standards
+npm run check-types ||
+(
+    echo "\n ❌🟦 Type check ${RED}Failed${NC}. 🟦❌\n Make the changes required above.\n"
+    false;
+)
+
+# If everything passes... Now we can build
+echo "🔥🚀 ${BOLD}All passed... Now we can build.${NC} 🚀🔥"
+
+npm run build ||
+(
+    echo "\n ❌🟩 Next build ${RED}Failed${NC}. 🟩❌\n View the errors above to see why.\n"
+    false;
+)
+
+# If everything passes... Now we can commit
+echo "✅✅ ${GREEN}Build is completed... I am committing this now.${NC} ✅✅\n"
+```
+
+## package.json の script
+
+```
+"scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky install",
+    "check-types": "tsc --pretty --noEmit",
+    "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "format": "prettier --write .",
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types"
+},
+```
+
